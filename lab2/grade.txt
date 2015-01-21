@@ -1,0 +1,6 @@
+Signed integer computation: 6/6 
+Unsigned integer computation: 7/7 
+Multiplication, division, modulus: 8/8
+Floating point: 7/9
+
+Total:  28/30

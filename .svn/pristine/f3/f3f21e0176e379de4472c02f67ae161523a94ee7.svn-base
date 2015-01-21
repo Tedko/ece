@@ -1,0 +1,275 @@
+
+Signed integer computation
+
+1. What is the largest value representable in 16-bit signed format? Smallest?
+2^15-1;-2^15
+2. What is the result of the third computation? Why?
+21000+22000
+-22536 (xa7f8)   
+It over-flowed. it is outside the positive range.
+3. Why does the fourth computation overflow, but not the fifth?
+For the range of the value can be representaed by 16-big signed is [-2^15,2^15-1], and 32768=2^15>2^15-1, so 4th overflow, but 5th not. 
+4. If you were to start at 0, and increment repeatedly (add 1), what pattern would you see (in signed mode)?
+
+after increaded to 2^15-1, the next will be -2^15, then increased from -2^15 to 2^15-1, then repeat it again.
+
+
+
+
+Unsigned integer computation
+
+1. What is the largest value representable in 16-bit unsigned format? Smallest?
+
+2^16-1;0
+
+
+2. What result do you get from the first computation? Why?
+
+100-199
+65437 (xff9d)
+It over-flowed. it is outside the positve range*(-99<0)
+
+3. Why doesn't the second or third computation overflow?
+for this time the maxim of positve number is 2^16-1, much more bigger than 2nd and 3rd's outcome.
+
+4. If you were to start at 0, and increment repeatedly (add 1), what pattern would you see (in unsigned mode)?
+
+after reach 2^16-1, the next one will be 0, then increased from 0~2^16-1, repeated.
+
+
+5. What are the advantages and disadvantages of unsigned formats (compared to signed formats)?
+
+the range of positive numbers are larger but it can not represent negative ones.
+
+Multiplication, division, modulus
+
+1. What result do you get in the second and third computations? Why?
+
+100*500
+-15536 (xc350) 
+-100*500
+15536 (x3cb0)
+for 50000>2^15-1 2nd overflowed, and -50000<-2^15, so overflowed too.
+
+2. What results do you get from computations 4-7? Why? (Hint: can signed 16-bit encoding represent fractions?)
+> 12/3
+4 (x0004)
+> 11/3
+3 (x0003)
+> 10/3
+3 (x0003)
+> 9/3
+3 (x0003)
+For s16 is not float number, it can only represent intergers.
+
+
+
+
+
+
+
+3. Does the result from computations 4-7 get rounded to the nearest integer? If not, what actually happens? Where might this behavior be useful? (Hint: what if you wanted to divide 11 candies between 3 people?)
+
+
+Nope. The fractions are trimmed. Yes, may useful. In the case that something can not be devided in to parts smaller than 1.
+
+4. What does the modulus operator do for positive integers?
+> 12%3
+0 (x0000)
+> 11%3
+2 (x0002)
+> 10%3
+1 (x0001)
+> 9%3
+0 (x0000)
+
+They works.
+
+
+
+5. What happens when you divide by 0? Modulus with 0? What happens to the binary-calculator program? Why might this be a good thing? (Hint: remember the discussion introduction?)
+
+ 12/0
+Floating point exception
+the program is forced quit. Good thing, for it force the program to stop so there will not be a wrong answer which may be used somewhere.
+
+
+
+
+6. Excluding division by 0, characterize the behavior of the modulus operation for positive and negative divisors and dividends (for a total of 2x2 = 4 combinations).
+
+eg:  -12%3
+0 (x0000)  it works
+
+eg:  12%-5
+2 (x0002) it works
+
+eg: 12%5 works
+
+eg:-12%-5
+-2 (xfffe) works.
+
+
+
+
+
+
+
+
+
+Floating point
+
+1. Why is there an error in the fourth computation, but not the third? (Hint: how do you encode 0.25 and 0.3 in floating point?)
+
+3rd question:
+100-0.25
+99.750000 (x42c78000)
+
+4th:
+100-0.3
+99.699997 (x42c76666)
+
+
+For we encode 0.25 as 0*(positive) 8bits-127 = exponent, 23bits = fractions. 
+
+And 0.25*(decimal) is 0.01 *(Binary) So 32bits float is 0 xxxxxxxx 0100000000000000000000
+But 0.3 can not be represent exactly in binary, for binary is based on 2^n. the outcome is like 0.0100110011001100...
+
+
+2. How does the result of the fifth computation compare to the fourth? Explain. (Hint: look at the hex representations of the results. How does the floating point format handle negative numbers?)
+
+4th:
+100-0.3
+99.699997 (x42c76666)
+
+5th:> -100+0.3
+-99.699997 (xc2c76666)
+
+Only the first binary digit changed
+c(hex)=1100
+4(hex)=0100
+
+So the way floating format deal negative number by using the leading digit. 1 for negative, no other change.
+
+3. Mathematically, would you expect the same results in computations 6 and 7? Do you observe this result experimentally? Explain. (Hint: try stepping through each computation)
+
+Yes,No,
+
+6th: 9000+0.0001-9005
+-5.000000 (xc0a00000)
+
+7th: 9000-9005+0.0001
+-4.999900 (xc09fff2e)
+
+
+For 9000 is so big that will use nealy all digits in the 8bits and 23bits part for exponent and fraction, so 0.0001 will lead a problem that it is to small can not be storage in 32 bits as 9000.0001, but 5 and 0.0001*(5.0001) will not cause this problem.
+We got 7 digits as siginificant figures in 32bits float.
+ 
+If you tried 9000.0001+0, the outcome is still 9000.And the outcome of 9000.001 is 9000.000977(x460ca001)
+
+
+4. What happens if you try computation 6 in double-precision (64-bit) floating-point mode? Why?
+
+The outcome is correct, for 64bits float now can deal with 9000.0001
+
+5. Why is there noticeable error in computation 8, but not 9? (Hint: think of multiplying floating point numbers like multiplying two numbers in scientific notation, how do you do it?)
+
+when we do multiplying two numbers, we just need to handle the fraction part,then exponent part added.8th is different from 9th for it is add, just like what i answered in Q3,32bits float cant handle 9000.01
+
+6. The root cause of the Ariane 5 rocket failure was isolated to the conversion of a floating point number, which stored the horizontal component of the rocket's velocity, to a 32-bit signed integer. What is the most likely cause of the failure? (Hint: this wasn't some small rounding error, the computed velocity was way off, causing the system to go haywire)
+
+
+Small issues are not represented in 32bits float, but increasingly these issues will lead a huge difference between what 32bits float represent and real situation .
+
+
+
+
+
+--------------------------
+
+Additional problems
+
+Completion of these additional problems is not required for lab2 credit. However, problems similar to these may show up in a future exam.
+
+Bitwise logic
+
+1. What are computations 1-3 doing? (what does a function that computes f(x) = x & 1 do?)
+
+1:x01fa & 1
+0 (x0000)
+2:x3030 & 1
+0 (x0000)
+
+fx=x & 1 is making every thing output 0.
+
+
+
+
+2. What are computations 4-6 doing? (hint: suppose each of the 16 bits bit represents a light switch that is either on or off)
+
+Eg: 1110001 | 1111100 =1111101 
+
+if one of the three has a 1 in certain bit, then it is 1.
+
+if light no2 is on in A, off in B, then it is on in A|B 
+3. Continuing with the a light switch (or similar) analogy, what is computation 7 doing?
+
+Make sure the last digit is 0, for ~1=11111111110
+SO THE LAST Light off.
+
+
+4. Why does computation 8 produce a nonzero result, but computation 9 produces zero?
+
+for 9 if a certain digit in A is Unkno1, in B is Unkno2, then if it is 1 and 1, it comes 1 & 0|0&1
+,if 0 and 1, it is 1 & 1 | 0 *(but there is not this situation in 9th). So most cases it is 0.
+
+But XOR is different. Actually it depends on the input.  
+
+I think there is a typo in this one...?
+
+5. What is computation 10 doing? (what does a function that computes f(x) = x & ~1 do?)
+
+Answered above, it make sure the last digit is 0.
+
+6. Compare the results of computation 11 and 12. Can you explain?
+
+
+Bit shifting
+
+1. Looking at the results from computations 1-5, do you see a pattern? What's going on? What does the left-shift operation effectively do?
+
+n is number shifts
+4*2^(n-1)
+
+
+
+2. Given this definition of “<<”, is the result from computation #6 what you would expect? What's happening?
+
+
+<< is kind of exponent. *(if not consider the negative
+outcome is 9*2^(14-1)
+
+3. Why is the result from computation #7 negative?
+
+
+we got 16bits signed ,the leading one represents +/- now the leading one is 1, so negative, That depends on what we use, using Signed 16, it outputs it.
+
+
+4. Looking at the results from computations 8-11, what does the right-shift operation effectively do? (Hint: Try doing integer divisions with the same divisor)
+
+
+It is the oppsite of <<.
+
+A>>n means that
+
+A*(1/2)^n
+
+Need to consider the boundary too.
+
+5. Thinking of the right-shift operation as a shift operation, there's a simple explanation for why the result of computation 12 is 0. What is it? (Hint: how does a computer encode decimal 10 in signed 16-bit?)
+
+100Binary -- Move to left 4 digits, nothing left
+
+
+
+

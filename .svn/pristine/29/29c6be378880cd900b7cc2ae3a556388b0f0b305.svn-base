@@ -1,0 +1,7 @@
+My algorithm is right, but I made some mistake, which lead my program fail:
+
+1. I use non-English “,” and “;”,it may cause a problem when assemble. :(
+
+2. I did not realize the BR instruction will increase the PC by 1 first, so my PCoffset should be bigger. I add #1 to my PCoffset to fix it.
+
+3. For the TRAP x25 instruction. I did a typo when I enter the binary x25. Now I fix it.

@@ -1,0 +1,22 @@
+Part 1
+
+1. 4/4
+2. 4/4
+3. 4/4
+4. 1/1
+5. 1/1
+
+Part 2
+
+int a=256:  1/1
+while(a > 1):  0/1
+printf("%d\n", a): 1/1
+a = sqrt(a):  1/1
+no unnecessary modifications: 1/1
+
+Total:  17/19
+
+
+
+
+Output Incorrect: -1 point

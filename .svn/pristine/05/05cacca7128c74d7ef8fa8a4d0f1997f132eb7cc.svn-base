@@ -1,0 +1,10 @@
+0011 0000 0000 0000  ; specifies where the program will be stored (x3000)
+ 
+0101 010 010 1 00000 ; clear R2 by ANDing it with x00000
+0001 010 010 1 01100 ; add the decimal number 12 to R2, and store result in R2
+;;;PUT YOUR INSTRUCTIONS AFTER THIS LINE;;;
+0001 010 010 1 01100 ; add the decimal number 12 to R2, and store result in R2
+0001 010 010 1 01100 ; add the decimal number 12 to R2, and store result in R2
+
+ 
+1111 0000 0010 0101  ; halt

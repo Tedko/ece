@@ -1,0 +1,26 @@
+STARTING PASS 1
+0 errors found in first pass.
+STARTING PASS 2
+0 errors found in second pass.
+
+"Hello.": 15/15 
+Empty String: 5/5 
+"ECE": 5/5 
+"Computers": 5/5 
+"(! _ !)": 5/5 
+Initializing Registers: 4/4 
+uses character stored at x5000 to represent 0 bits in font: 5/5 
+uses character stored at x5001 to represent 1 bits in font: 5/5 
+proper_halt: 1/1
+
+Functionality Total: 50/50
+
+Style Total: 35/35
+
+Introductory paragraph: 0/5
+Table of registers with meanings explanation: 5/5
+Clear and well-commented: 5/5
+
+Clarity Total: 10/15
+
+Total: 95/100

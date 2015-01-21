@@ -1,0 +1,50 @@
+Question 1: Describe the errors that occur when trying to assemble lab5_code.asm. Identify the cause of each error.
+
+
+Errors:
+14: illegal operands for missing opcode
+ 16: instruction appears before .ORIG
+ 17: constant outside of allowed range
+ 19: illegal operands for ADD
+ 30: constant outside of allowed range
+ 32: label OUTERLOOP has already appeared
+ 35: constant outside of allowed range
+ 43: no .END directive found
+
+14: for the first line of code 'x3000' is illegal for no opcode *(missing .ORIG )
+16:Missing .ORIG END will cause the error message.
+17: the number is out of the range of LD*(x3010)
+19: Two comma between R3 and R3, remove one
+30: the number is out of the range of LD *(x300F)
+32: Cannot recognize the opcode, Should be BRzp *(not pz)
+35: x3011 out of the range of ST
+43: Missing .END
+
+
+Question 2: For each label in the code, write down the corresponding memory location.
+
+OUTERLOOP:x3004
+
+INNERLOOP:x3005
+
+INPUT:x3014
+
+ZERO: x0000
+N1: XFFFF
+OUTPUT:x0000
+
+
+
+
+
+
+Question 3: Between using labels and explicit memory locations/offsets, which
+one makes the most sense, and why?
+
+
+
+
+
+
+Labels,for they are esay to read and when the PCoffset number change, the label still
+remains the same.

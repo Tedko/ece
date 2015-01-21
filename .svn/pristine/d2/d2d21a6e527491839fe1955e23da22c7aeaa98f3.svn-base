@@ -1,0 +1,34 @@
+ 44: contains unrecognizable characters
+TRAP x25		halt1 errors found.
+
+positive_sorted_min_max: 5/5
+positive_sorted_max_min: 5/5
+positive_random: 5/5
+negative_max_min: 0/5
+nagative_min_max: 0/5
+random_nagative_min_max: 0/5
+mixed_min_max: 5/5
+mixed_max_min: 5/5
+nagative_positive_random: 5/5
+Result_in_R5: 5/5
+reg_initialization: 5/5
+proper_halt: 0/5
+Program starts at x3100: 5/5
+Program reads 10 consecutive numbers starting from addr x3132: /5
+Functionality Total: 45/70
+
+Uses one loop: 5/5
+Uses one test to compare numbers: 5/5
+No unnecessary data movement: 5/5
+Code is within reasonable limit: 5/5
+Style Total: 20/20
+
+Lines are < 120 chars: 2/2
+Machine code and comments are formatted properly: 3/3
+Introductory paragraph on solution: 2/2
+Well-commented: 3/3
+Format Total: 10/10
+
+Other deductions: 
+
+TOTAL: 75/100

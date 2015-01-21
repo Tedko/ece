@@ -1,0 +1,42 @@
+; This is the file you will use for Lab 12 assignment
+; Make sure to comment your code properly and don't exceed 
+; the line limitation for this assignment.  Good luck!
+
+0011 0001 0000 0000 ; x3100 - starting address of the program
+
+; The program description and code starts here
+
+; By assuming the first number is the max(R5)
+; Then Compare it to the next numbers by their order,
+; if max is bigger do nothing,
+; if smaller,change the bigger to R5
+; repeat it until 9 times.
+
+; R1 holds the value to compare
+; R2 is the temp value
+; R3 is the pointer to point to the addr of values
+; R4 is the loop counter
+; R5 holds the largest value
+
+
+0101 001 001 1 00000	;AND R1,R1,#0		Initialize R1
+0101 010 010 1 00000	;AND R2,R2,#0		Initialize R2
+1110 011 000101111	;LEA R3,x3132		Load addr of 1st (x3132)
+
+0101 100 100 1 00000	;AND R4,R4,#0		clears R4(loop counter)
+0001 100 100 1 01010	;ADD R4,R4,#10		Set loop counter = '10'
+0010 101 000101100	;LD R5,mem[x3132]	1st value is the current Max
+
+0110 001 011 000001	;LDR R1,R3,#1		loads next value
+1001 010 001 111111	;NOT R2,R1		  get inverse of R1(next value) (step1)
+0001 010 010 1 00001	;ADD R2,R2,#1	get inverse  (step2)
+
+0001 010 101 0 00 010	;ADD R2,R5,R2 		computes the difference
+0000 0 1 1 000000001	;BRzp #1 		if difference < 0
+0001 101 001 1 00000	;ADD R5,R1,#0		new value is bigger, set it new MAX
+
+0001 011 011 1 00001	;ADD R3,R3,#1 		increase addr to load next #
+0001 100 100 1 11111	;ADD R4,R4,#-1		decrease loop counter
+0000 1 1 0 000000001	;BRzn #1 		if counter > 0,do nothing
+0000 0 0 1 111110111	;BRp #-9		if <0,back to loading next # value
+1111 0000 00011001	;TRAP x25		halt

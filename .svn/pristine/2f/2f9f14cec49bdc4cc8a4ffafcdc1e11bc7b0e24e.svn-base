@@ -1,0 +1,56 @@
+
+Welcome to the LC-3 simulator.
+
+The contents of the LC-3 tools distribution, including sources, management
+tools, and data, are Copyright (c) 2003 Steven S. Lumetta.
+
+The LC-3 tools distribution is free software covered by the GNU General
+Public License, and you are welcome to modify it and/or distribute copies
+of it under certain conditions.  The file COPYING (distributed with the
+tools) specifies those conditions.  There is absolutely no warranty for
+the LC-3 tools distribution, as described in the file NO_WARRANTY (also
+distributed with the tools).
+
+Have fun.
+
+
+--- halting the LC-3 ---
+
+PC=x0494 IR=xB1AE PSR=x0400 (ZERO)
+R0=x0000 R1=x7FFF R2=x0000 R3=x0000 R4=x0000 R5=x0000 R6=x0000 R7=x0490 
+                   x0494 x0FF9 BRNZP TRAP_HALT
+Loaded "./testcases/test3.obj" and set PC to x5000
+Loaded "./testcases/lab14.obj" and set PC to x3000
+                        
+                        
+*******   ****  ******* 
+ **  **  **  **  **  ** 
+ **   * **    *  **   * 
+ ** *   **       ** *   
+ ****   **       ****   
+ ** *   **       ** *   
+ **     **       **     
+ **   * **    *  **   * 
+ **  **  **  **  **  ** 
+*******   ****  ******* 
+                        
+                        
+                        
+                        
+
+--- halting the LC-3 ---
+
+PC=x0494 IR=xB1AE PSR=x0400 (ZERO)
+R0=x0000 R1=x7FFF R2=x0000 R3=x0000 R4=x303D R5=x0000 R6=x0010 R7=x0490 
+                   x0494 x0FF9 BRNZP TRAP_HALT
+4FF8:                                         0020 002A 0045 0043           *EC
+5004: 0045 0000 0000 0000 0000                                     E....       
+5004:                          0000 0000 0000 0000 0000 0000 0000       .......
+5010: 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000  ............
+501C: 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000  ............
+5028: 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000  ............
+5034: 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000  ............
+5040: 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000  ............
+504C: 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000  ............
+5058: 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000  ............
+5064: 0000 0000 0000 0000 0000                                     .....       

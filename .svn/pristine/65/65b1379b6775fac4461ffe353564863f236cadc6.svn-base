@@ -1,0 +1,10 @@
+Question 1: Describe the errors that occur when trying to assemble lab5_code.asm. Identify the cause of each error.
+
+
+
+Question 2: For each label in the code, write down the corresponding memory location. 
+
+
+
+Question 3: Between using labels and explicit memory locations/offsets, which
+one makes the most sense, and why?
